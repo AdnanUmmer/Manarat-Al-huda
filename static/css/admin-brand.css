@@ -1,0 +1,38 @@
+:root {
+  --primary: #30499d;
+  --secondary: #17233c;
+}
+
+#header {
+  background: #17233c;
+}
+
+#branding h1,
+#branding h1 a:link,
+#branding h1 a:visited {
+  color: #fff;
+  font-weight: 600;
+}
+
+.module h2,
+.module caption,
+.inline-group h2 {
+  background: #30499d;
+}
+
+div.breadcrumbs {
+  background: #e9edf4;
+  color: #17233c;
+}
+
+div.breadcrumbs a {
+  color: #30499d;
+}
+
+.button,
+input[type="submit"],
+input[type="button"],
+.submit-row input,
+a.button {
+  background: #30499d;
+}

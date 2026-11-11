@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block title %}Contact Us | Manarat Al Huda{% endblock %}
+{% block content %}
+<div class="wash"><div class="wrap enquiry-layout"><aside><span class="eyebrow">Contact Us</span><h1>Get in touch.</h1><p>Contact our Dubai office with your wholesale requirements.</p>
+<address><strong>{{ site_settings.company_name }}</strong><p>{{ site_settings.location }}</p><a href="mailto:{{ site_settings.email }}">{{ site_settings.email }}</a>{% if site_settings.phone %}<a href="tel:{{ site_settings.phone }}">{{ site_settings.phone }}</a>{% endif %}</address></aside>{% include "partials/quote_form.html" %}</div></div>{% endblock %}

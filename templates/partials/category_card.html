@@ -1,0 +1,4 @@
+<a class="cat-card" href="{{ category.get_absolute_url }}">
+  <div class="card-image">{% include "partials/category_image.html" %}</div>
+  <div class="card-copy"><div><h3>{{ category.name }}</h3>{% if category.slug == 'food-groceries' %}<p>Coffee, chocolates, packaged and canned foods.</p>{% else %}<p>{{ category.short_description }}</p>{% endif %}</div><span class="arrow" aria-hidden="true">&gt;</span></div>
+</a>

@@ -1,0 +1,4 @@
+import Link from 'next/link';
+import {requireAdmin} from '@/lib/security';
+import {logout} from '../actions';
+export default async function Layout({children}:{children:React.ReactNode}){const user=await requireAdmin();return <div className="admin-shell"><aside><Link href="/admin" className="admin-brand">MANARAT<br/>AL HUDA<span>BUSINESS ADMINISTRATION</span></Link><nav>{[['','Overview'],['categories','Categories'],['products','Products'],['enquiries','Enquiries'],['media','Media library'],['settings','Content & settings']].map(([url,label])=><Link href={`/admin/${url}`} key={label}>{label} <span>↗</span></Link>)}</nav><div><p>{user.email}</p><Link href="/">View website ↗</Link><form action={logout}><button className="text-button">Sign out</button></form></div></aside><main id="main" className="admin-main">{children}</main></div>}

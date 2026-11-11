@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}{{ category.seo_title|default:category.name }} | Manarat Al Huda{% endblock %}
+{% block meta_description %}{{ category.seo_description|default:category.description }}{% endblock %}
+{% block content %}
+<div class="wash"><div class="wrap detail-grid"><div><a class="crumb" href="{% url 'catalogue:product-list' %}">Product catalogue <span aria-hidden="true">&gt;</span></a><h1>{{ category.name }}</h1><p class="lead">{{ category.description|default:category.short_description }}</p>
+{% if category.slug == 'food-groceries' %}<p>Coffee, chocolates, packaged foods, canned and tinned goods.</p>{% endif %}
+<a class="button" href="{% url 'enquiries:request-quote' %}?category={{ category.slug }}">Request a quote</a></div>
+<figure><div class="detail-photo">{% include "partials/category_image.html" with priority=True sizes="(max-width: 720px) 100vw, 48vw" %}</div><figcaption>Illustrative photography · Availability confirmed on enquiry</figcaption></figure></div></div>
+{% if products %}<section class="wrap section"><h2>Products in this category</h2><div class="catalog-grid">{% for product in products %}<a class="cat-card" href="{{ product.get_absolute_url }}"><div class="card-image">{% with photo=product.images.all.0 %}{% if photo %}<img src="{{ photo.image.url }}" alt="{{ photo.alt_text|default:product.name }}" loading="lazy">{% else %}{% include "partials/category_image.html" %}{% endif %}{% endwith %}</div><div class="card-copy"><div><h3>{{ product.name }}</h3><p>{{ product.brand }} {{ product.packaging }}</p></div><span class="arrow" aria-hidden="true">&gt;</span></div></a>{% endfor %}</div></section>{% endif %}
+{% if related_categories %}<section class="wrap section"><span class="eyebrow">Explore further</span><h2>Related categories</h2><div class="related-grid" data-stagger>{% for category in related_categories %}{% include "partials/category_card.html" %}{% endfor %}</div></section>{% endif %}{% endblock %}

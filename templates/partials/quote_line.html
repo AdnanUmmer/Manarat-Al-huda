@@ -1,0 +1,8 @@
+<fieldset data-line><legend>Requested item <span data-number>{{ number }}</span></legend>
+{% for hidden in item.hidden_fields %}{{ hidden }}{{ hidden.errors }}{% endfor %}
+{{ item.non_field_errors }}
+<div class="form-grid"><div class="wide">{{ item.category.label_tag }}{{ item.category }}{{ item.category.errors }}</div>
+{% if has_products %}<div class="wide">{{ item.product.label_tag }}{{ item.product }}{{ item.product.errors }}</div>{% elif item.product.errors %}{{ item.product.errors }}{% endif %}
+<div class="wide">{{ item.requested_product.label_tag }}{{ item.requested_product }}{{ item.requested_product.errors }}</div>
+<div>{{ item.quantity.label_tag }}{{ item.quantity }}{{ item.quantity.errors }}</div><div>{{ item.unit.label_tag }}{{ item.unit }}{{ item.unit.errors }}</div></div>
+<button class="remove-line" type="button" data-remove-item hidden>Remove item</button></fieldset>

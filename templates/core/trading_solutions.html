@@ -1,0 +1,6 @@
+{% extends "base.html" %}{% load static %}
+{% block title %}Trading Solutions | Manarat Al Huda{% endblock %}
+{% block content %}
+{% include "partials/intro.html" with label="Trading Solutions" heading="Domestic wholesale supply." description="We connect wholesale sourcing with the needs of trading businesses in Dubai and across the UAE." %}
+<section class="wrap section"><h2>From sourcing to supply</h2>{% include "partials/steps.html" %}</section>
+<section class="wash section"><div class="wrap feature-grid"><div class="interior-photo"><img src="{% static 'images/categories/energy-960.webp' %}" width="960" height="540" loading="lazy" alt="Energy drink cans in assorted formats"></div><div><span class="eyebrow">Business enquiries</span><h2>Start with your product list.</h2><p>Include preferred brands, formats, case sizes and estimated quantities. You can request several categories in a single enquiry.</p><p>Our team reviews your requirements and discusses availability and supply arrangements directly.</p><a class="button" href="{% url 'enquiries:request-quote' %}">Request a Quote</a></div></div></section>{% endblock %}

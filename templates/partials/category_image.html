@@ -1,0 +1,3 @@
+{% if category.hero_src %}
+<img src="{% if priority %}{{ category.hero_src }}{% else %}{{ category.card_src }}{% endif %}" {% if category.image_srcset %}srcset="{{ category.image_srcset }}" sizes="{{ sizes|default:'(max-width: 650px) 100vw, (max-width: 1000px) 46vw, 34vw' }}"{% endif %} alt="{{ category.name }} category photograph" width="960" height="640" {% if priority %}fetchpriority="high"{% else %}loading="lazy"{% endif %} decoding="async">
+{% else %}<span class="no-photo" aria-hidden="true">{{ category.name|slice:":1" }}</span>{% endif %}

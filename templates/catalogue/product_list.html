@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Product Catalogue | Manarat Al Huda{% endblock %}
+{% block content %}
+{% include "partials/intro.html" with label="Product catalogue" heading="Our product range." description="Browse our wholesale categories, then tell us the brands, pack sizes and quantities your business needs." %}
+<div class="wrap catalogue-nav"><nav aria-label="Catalogue sections">{% if beverages %}<a href="#beverages">Beverages</a>{% endif %}{% if other_categories %}<a href="#essentials">Food, home &amp; personal care</a>{% endif %}</nav><a class="text-link" href="{% url 'enquiries:request-quote' %}">Request a Quote</a></div>
+<div class="wrap catalogue-body">
+{% if beverages %}<section id="beverages"><h2>Beverages</h2><div class="catalog-grid" data-stagger>{% for category in beverages %}{% include "partials/category_card.html" %}{% endfor %}</div></section>{% endif %}
+{% if other_categories %}<section id="essentials"><h2>Food, home &amp; personal care</h2><div class="catalog-grid" data-stagger>{% for category in other_categories %}{% include "partials/category_card.html" %}{% endfor %}</div></section>{% endif %}
+{% if not categories %}<p>Contact our team to discuss the categories your business needs.</p>{% endif %}
+<p class="image-note">Category photography is illustrative. Brands, packaging and availability are confirmed on enquiry.</p></div>
+{% include "partials/cta.html" %}{% endblock %}

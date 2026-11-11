@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Privacy | Manarat Al Huda{% endblock %}
+{% block content %}
+{% include "partials/intro.html" with label="YOUR INFORMATION" heading="Privacy & enquiries." %}
+<section class="wrap prose">
+  <p>When you submit an enquiry, {{ site_settings.company_name }} collects the contact and business details you provide, your requested items and your notes to review and respond to your request.</p>
+  <p>Enquiries are stored in our business database and a notification may be sent through our email service. Access is limited to authorised administrators. The website uses essential session cookies for administrator authentication.</p>
+  <p>Catalogue photography is served locally. If an administrator selects an external image URL, the image provider receives the connection information needed to display it. Contact <a href="mailto:{{ site_settings.email }}">{{ site_settings.email }}</a> to request access, correction or deletion of your enquiry information. Records are retained only as needed for business correspondence and applicable recordkeeping obligations.</p>
+</section>
+{% endblock %}

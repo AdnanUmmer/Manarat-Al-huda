@@ -1,0 +1,4 @@
+{% extends "base.html" %}
+{% block title %}Enquiry received | Manarat Al Huda{% endblock %}
+{% block content %}<section class="wash section"><div class="wrap receipt" role="status"><span class="eyebrow">Enquiry received</span><h1>Thank you.</h1>{% if quote %}<p>Your enquiry has been saved. Keep this reference for correspondence.</p><strong class="reference">{{ quote.reference }}</strong>
+{% if email_sent %}<p>Our team has been notified.</p>{% else %}<p>Email notification is unavailable. You can contact our team directly with your reference.</p>{% endif %}{% endif %}<a class="text-link" href="mailto:{{ site_settings.email }}">{{ site_settings.email }}</a><p><a class="button outline" href="{% url 'catalogue:product-list' %}">Back to products</a></p></div></section>{% endblock %}

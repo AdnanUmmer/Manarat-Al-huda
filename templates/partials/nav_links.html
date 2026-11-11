@@ -1,0 +1,7 @@
+{% with page=request.resolver_match.url_name app=request.resolver_match.namespace %}
+<a href="{% url 'core:home' %}" {% if page == 'home' %}aria-current="page"{% endif %}>Home</a>
+<a href="{% url 'core:about' %}" {% if page == 'about' %}aria-current="page"{% endif %}>About Us</a>
+<a href="{% url 'catalogue:product-list' %}" {% if app == 'catalogue' %}aria-current="{% if page == 'product-list' %}page{% else %}location{% endif %}"{% endif %}>Products</a>
+<a href="{% url 'core:trading-solutions' %}" {% if page == 'trading-solutions' %}aria-current="page"{% endif %}>Trading Solutions</a>
+<a href="{% url 'enquiries:contact' %}" {% if page == 'contact' %}aria-current="page"{% endif %}>Contact Us</a>
+{% endwith %}

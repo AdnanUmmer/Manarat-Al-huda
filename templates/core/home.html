@@ -1,0 +1,31 @@
+{% extends "base.html" %}{% load static %}
+{% block content %}
+<section class="hero"><div class="wrap hero-grid">
+  <div class="hero-copy">
+    <span class="eyebrow">Dubai-based wholesale trading</span>
+    <h1>{% if site_settings.hero_headline == "Your Partner in Everyday Wholesale Supply." %}Everyday essentials.<br><em>Reliable wholesale supply.</em>{% else %}{{ site_settings.hero_headline }}{% endif %}</h1>
+    <p>{{ site_settings.hero_intro }}</p>
+    <div class="actions"><a class="button" href="{% url 'catalogue:product-list' %}">Explore Our Products</a><a class="button outline" href="{% url 'enquiries:request-quote' %}">Request a Quote</a></div>
+  </div>
+  <div class="hero-plate">{% with lead=lead_category %}{% if lead %}
+    <a class="hero-shot" href="{{ lead.get_absolute_url }}"><div class="shot-mask">{% include "partials/category_image.html" with category=lead priority=True sizes="(max-width: 720px) 100vw, 50vw" %}</div><div class="shot-caption"><div><span>Category spotlight</span><strong>{{ lead.name }}</strong></div><b aria-hidden="true">&gt;</b></div></a>
+  {% else %}<img class="fallback-shot" src="{% static 'images/categories/softdrinks-960.webp' %}" alt="Illustrative beverage selection">{% endif %}{% endwith %}</div>
+</div></section>
+<div class="fact-band"><div class="wrap facts">
+  <div><span class="fact-icon">{% include "partials/icon.html" with icon="pin" %}</span><div><small>Based in</small><strong>DIP 2, Dubai</strong></div></div>
+  <div><span class="fact-icon">{% include "partials/icon.html" with icon="box" %}</span><div><small>Trading model</small><strong>B2B wholesale</strong></div></div>
+  <div><span class="fact-icon">{% include "partials/icon.html" with icon="globe" %}</span><div><small>Market</small><strong>United Arab Emirates</strong></div></div>
+</div></div>
+<section class="wrap section editorial"><div><span class="eyebrow">Our company</span><h2>Connecting supply<br>with business.</h2></div><div><p class="lead">Based in Dubai Investments Park 2, we source everyday goods from wholesalers and supply trading businesses across the UAE.</p><p>Beverages lead our range, alongside food, home care and personal care essentials.</p><a class="text-link" href="{% url 'core:about' %}">About Us</a></div></section>
+<section class="wash section"><div class="wrap"><div class="section-title"><div><span class="eyebrow">Product catalogue</span><h2>Explore our product range</h2><p>From beverages to everyday essentials, discover the categories we trade.</p></div><a class="text-link" href="{% url 'catalogue:product-list' %}">All products</a></div>
+{% if beverages %}<div class="beverage-grid" data-stagger>{% for category in beverages %}{% include "partials/category_card.html" %}{% endfor %}</div>{% endif %}
+{% if other_categories %}<h3 class="group-title">Food, home &amp; personal care</h3><div class="essentials-grid" data-stagger>{% for category in other_categories %}{% include "partials/category_card.html" %}{% endfor %}</div>{% endif %}
+</div></section>
+<section class="wrap section"><div class="section-title"><div><span class="eyebrow">Trading capabilities</span><h2>How we work</h2></div><a class="text-link" href="{% url 'core:trading-solutions' %}">Trading Solutions</a></div>{% include "partials/steps.html" %}</section>
+{% if beverages %}<section class="spotlight"><div class="wrap feature-grid">
+<div class="feature-photo">{% include "partials/category_image.html" with category=focus_category sizes="(max-width: 720px) 100vw, 48vw" %}</div>
+<div><span class="eyebrow">Beverage focus</span><h2>Beverages at the heart of our business.</h2><p>From bottled water to energy drinks, tell us which brands and case formats your business needs.</p><nav class="focus-links" aria-label="Beverage categories">{% for category in beverages %}<a href="{{ category.get_absolute_url }}">{{ category.name }}</a>{% endfor %}</nav><a class="text-link" href="{% url 'catalogue:product-list' %}#beverages">Explore beverages</a></div>
+</div></section>{% endif %}
+<section class="wrap section editorial why"><div><span class="eyebrow">Why Manarat Al Huda</span><h2>A local trading focus.</h2></div><ul class="fact-list"><li>Dubai-based wholesale business</li><li>UAE domestic market focus</li><li>Beverage-led product offering</li><li>Multiple FMCG categories</li><li>Direct business-to-business enquiries</li></ul></section>
+{% include "partials/cta.html" %}
+{% endblock %}

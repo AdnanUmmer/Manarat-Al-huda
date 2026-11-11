@@ -1,0 +1,9 @@
+{% load static %}
+<footer><div class="wrap footer-grid">
+  <div><a class="brand" href="{% url 'core:home' %}"><img src="{% static 'images/wordmark.png' %}" width="720" height="169" alt="Manarat Al Huda home"></a><p>Wholesale beverages and consumer goods for trading companies across the UAE.</p></div>
+  <div><h2>Explore</h2><a href="{% url 'core:about' %}">About Us</a><a href="{% url 'catalogue:product-list' %}">Products</a><a href="{% url 'core:trading-solutions' %}">Trading Solutions</a></div>
+  <div><h2>Contact</h2><p>{{ site_settings.location }}</p><a href="mailto:{{ site_settings.email }}">{{ site_settings.email }}</a>
+  {% if site_settings.phone %}<a href="tel:{{ site_settings.phone }}">{{ site_settings.phone }}</a>{% endif %}
+  {% if site_settings.whatsapp %}<a href="https://wa.me/{{ site_settings.whatsapp|cut:'+' }}">WhatsApp</a>{% endif %}
+  {% if site_settings.social_url %}<a href="{{ site_settings.social_url }}">Company profile</a>{% endif %}</div>
+</div><div class="wrap footer-base"><span>© {% now "Y" %} {{ site_settings.company_name }}</span><a href="{% url 'core:privacy' %}">Privacy</a></div></footer>

@@ -1,0 +1,11 @@
+{% load static %}
+<header class="masthead">
+  <div class="wrap mast-inner">
+    <a class="brand" href="{% url 'core:home' %}" aria-label="Manarat Al Huda home"><img src="{% static 'images/wordmark.png' %}" width="720" height="169" alt="Manarat Al Huda Goods Wholesale Trading L.L.C."></a>
+    <nav class="desktop-nav" aria-label="Primary navigation">{% include "partials/nav_links.html" %}</nav>
+    <a class="button nav-quote" href="{% url 'enquiries:request-quote' %}">Request Quote</a>
+    <details class="mobile-menu"><summary aria-label="Navigation menu"><span class="menu-bars" aria-hidden="true"></span>Menu</summary>
+      <nav aria-label="Mobile navigation">{% include "partials/nav_links.html" %}<a href="{% url 'enquiries:request-quote' %}">Request Quote</a></nav>
+    </details>
+  </div>
+</header>

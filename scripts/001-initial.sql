@@ -1,0 +1,11 @@
+CREATE TABLE IF NOT EXISTS categories (id text PRIMARY KEY, name text NOT NULL, slug text UNIQUE NOT NULL, description text NOT NULL DEFAULT '', short_description text NOT NULL DEFAULT '', hero_image text NOT NULL DEFAULT '', card_image text NOT NULL DEFAULT '', sort_order integer NOT NULL DEFAULT 0, featured boolean NOT NULL DEFAULT false, published boolean NOT NULL DEFAULT false, seo_title text NOT NULL DEFAULT '', seo_description text NOT NULL DEFAULT '');
+CREATE TABLE IF NOT EXISTS products (id text PRIMARY KEY, category_id text NOT NULL REFERENCES categories(id) ON DELETE RESTRICT, name text NOT NULL, slug text UNIQUE NOT NULL, description text NOT NULL DEFAULT '', brand text NOT NULL DEFAULT '', packaging text NOT NULL DEFAULT '', case_quantity text NOT NULL DEFAULT '', availability text NOT NULL DEFAULT '', variants text NOT NULL DEFAULT '', images jsonb NOT NULL DEFAULT '[]', featured boolean NOT NULL DEFAULT false, published boolean NOT NULL DEFAULT false, archived boolean NOT NULL DEFAULT false);
+CREATE TABLE IF NOT EXISTS admins (id text PRIMARY KEY,email text UNIQUE NOT NULL,password_hash text NOT NULL);
+CREATE TABLE IF NOT EXISTS sessions (token_hash text PRIMARY KEY,admin_id text NOT NULL REFERENCES admins(id) ON DELETE CASCADE,expires_at timestamptz NOT NULL);
+CREATE TABLE IF NOT EXISTS settings (id integer PRIMARY KEY CHECK(id=1),data jsonb NOT NULL);
+CREATE SEQUENCE IF NOT EXISTS enquiry_reference;
+CREATE TABLE IF NOT EXISTS enquiries (id text PRIMARY KEY,reference text UNIQUE NOT NULL, name text NOT NULL,company text NOT NULL,email text NOT NULL,phone text NOT NULL,location text NOT NULL,notes text NOT NULL DEFAULT '',items jsonb NOT NULL,status text NOT NULL DEFAULT 'New' CHECK(status IN ('New','In Review','Contacted','Quoted','Closed')), internal_notes text NOT NULL DEFAULT '', email_status text NOT NULL DEFAULT 'Pending',created_at timestamptz NOT NULL DEFAULT now());
+CREATE TABLE IF NOT EXISTS media (id text PRIMARY KEY,url text NOT NULL,original_name text NOT NULL,created_at timestamptz NOT NULL DEFAULT now());
+CREATE TABLE IF NOT EXISTS rate_limits (key text PRIMARY KEY,hits integer NOT NULL DEFAULT 1,expires_at timestamptz NOT NULL);
+CREATE INDEX IF NOT EXISTS enquiries_created ON enquiries(created_at DESC);
+CREATE INDEX IF NOT EXISTS sessions_expiry ON sessions(expires_at);

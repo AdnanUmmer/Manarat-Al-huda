@@ -1,0 +1,23 @@
+[Unit]
+Description=Manarat Al Huda Django website
+After=network.target postgresql.service
+
+[Service]
+Type=simple
+User=manarat
+Group=manarat
+WorkingDirectory=/srv/manarat/app
+EnvironmentFile=/etc/manarat.env
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/srv/manarat/venv/bin/gunicorn config.wsgi:application --bind 127.0.0.1:8000 --workers 3 --timeout 60
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/srv/manarat/uploads
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

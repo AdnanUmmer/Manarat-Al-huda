@@ -1,0 +1,13 @@
+<form class="quote-form" method="post">{% csrf_token %}
+<h2>{% if contact_page %}Business enquiry{% else %}Quotation details{% endif %}</h2>
+{{ form.website }}{{ form.website.errors }}{{ form.non_field_errors }}
+{% if form.errors or formset.total_error_count %}<p class="error" role="alert">Please review the highlighted fields below.</p>{% endif %}
+<div data-quote-items>{{ formset.management_form }}{{ formset.non_form_errors }}
+{% for item in formset %}{% include "partials/quote_line.html" with number=forloop.counter %}{% endfor %}</div>
+<template data-line-template>{% include "partials/quote_line.html" with item=formset.empty_form number="__index__" %}</template>
+<button type="button" class="add-line" data-add-item hidden>+ Add another item</button>
+<h2 class="form-heading">Your business details</h2>
+<div class="form-grid">{% for field in form.visible_fields %}<div class="{% if field.name == 'notes' or field.name == 'location' %}wide{% endif %}">{{ field.label_tag }}{{ field }}{{ field.errors }}</div>{% endfor %}</div>
+<p class="fine-print">We use these details to respond to your request. Read our <a href="{% url 'core:privacy' %}">privacy notice</a>.</p>
+<button type="submit" class="button">Submit enquiry</button>
+</form>

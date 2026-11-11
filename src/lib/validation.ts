@@ -1,0 +1,4 @@
+import {z} from 'zod';
+export const internationalPhone=z.string().regex(/^\+[1-9]\d{7,14}$/,'Use an international number, for example +971…');
+export const quoteSchema=z.object({name:z.string().trim().min(2).max(100),company:z.string().trim().min(2).max(150),email:z.email().max(254),phone:internationalPhone,location:z.string().trim().min(2).max(150),notes:z.string().max(5000).default(''),website:z.string().max(0),items:z.array(z.object({categoryId:z.string().min(1).max(100),productId:z.string().max(100).optional(),requirement:z.string().trim().min(2).max(500),quantity:z.coerce.number().positive().max(100000000),unit:z.enum(['Cases','Cartons','Pallets','Units','Other'])})).min(1).max(20)});
+export const safeImage=z.string().max(1000).refine(v=>v===''||/^\/media\/[a-f0-9-]+\.webp$/.test(v)||/^https:\/\/images\.unsplash\.com\/photo-[a-zA-Z0-9-]+\?/.test(v),'Choose a library image or an Unsplash image URL');

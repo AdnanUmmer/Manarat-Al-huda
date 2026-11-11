@@ -1,0 +1,26 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="{% block meta_description %}Dubai-based wholesale supply of beverages and everyday consumer goods to trading businesses across the UAE.{% endblock %}">
+  <meta name="theme-color" content="#f7f9fc">
+  <title>{% block title %}Manarat Al Huda | Wholesale Trading, Dubai{% endblock %}</title>
+  <link rel="canonical" href="{{ canonical_url }}">
+  <link rel="icon" href="{% static 'favicon.ico' %}">
+  <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
+  <link rel="stylesheet" href="{% static 'css/site.css' %}">
+
+  <script defer src="{% static 'vendor/gsap.min.js' %}"></script>
+  <script defer src="{% static 'vendor/ScrollTrigger.min.js' %}"></script>
+  <script defer src="{% static 'js/site.js' %}"></script>
+  {% block head %}{% endblock %}
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  {% include "partials/header.html" %}
+  <main id="main">{% block content %}{% endblock %}</main>
+  {% include "partials/footer.html" %}
+</body>
+</html>
